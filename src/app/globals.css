@@ -44,7 +44,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full hover:bg-text-secondary/30;
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-secondary;
   }
 }
 
