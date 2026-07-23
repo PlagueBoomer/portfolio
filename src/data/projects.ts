@@ -24,7 +24,7 @@ export const projects: Project[] = [
     status: "In Development",
     technologies: ["Python", "Local LLM", "FastAPI", "SQLite", "React"],
     links: {
-      github: "https://github.com/PlagueBoomer/hiremate",
+      github: "https://github.com/PlagueBoomer/hiremate-showcase",
     },
     featured: true,
   },
