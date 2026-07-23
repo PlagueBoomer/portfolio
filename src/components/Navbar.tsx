@@ -6,18 +6,25 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/personal";
 import { useLanguage } from "@/context/LanguageContext";
 import ThemeSwitcher from "./ThemeSwitcher";
+import Terminal from "./Terminal";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [terminalOpen, setTerminalOpen] = useState(false);
   const { t } = useLanguage();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-text-primary font-semibold text-lg hover:text-accent transition-colors">
-          <span className="font-mono text-accent">~/</span>maciejbledowski
-        </Link>
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+          <button
+            onClick={() => setTerminalOpen(true)}
+            className="text-text-primary font-semibold text-lg hover:text-accent transition-colors text-left"
+            title="Open terminal"
+          >
+            <span className="font-mono text-accent">~/</span>maciejbledowski
+          </button>
 
         <div className="hidden md:flex items-center gap-6">
           <ul className="flex items-center gap-8">
@@ -73,5 +80,8 @@ export default function Navbar() {
         </div>
       )}
     </header>
+
+      {terminalOpen && <Terminal onClose={() => setTerminalOpen(false)} />}
+    </>
   );
 }
