@@ -25,20 +25,6 @@ export default function ContactPage() {
           </div>
         </a>
 
-        {/* Phone */}
-        <a
-          href="tel:+48517899275"
-          className="glass-card flex items-start gap-4 group"
-        >
-          <span className="text-2xl">📞</span>
-          <div>
-            <p className="text-sm text-text-secondary">Phone</p>
-            <p className="text-text-primary font-medium group-hover:text-accent transition-colors">
-              +48 517 899 275
-            </p>
-          </div>
-        </a>
-
         {/* LinkedIn */}
         <a
           href="https://linkedin.com/in/maciejbledowski"
