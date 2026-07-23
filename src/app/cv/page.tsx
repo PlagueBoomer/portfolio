@@ -1,13 +1,12 @@
-import { Metadata } from "next";
+"use client";
+
 import { personalInfo } from "@/data/personal";
 import { experiences } from "@/data/experience";
-
-export const metadata: Metadata = {
-  title: "CV | Maciej B\u0142\u0119dowski",
-  description: "Curriculum Vitae - Maciej B\u0142\u0119dowski, IT Support Specialist.",
-};
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CVPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="section-container">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
@@ -65,7 +64,7 @@ export default function CVPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
             <span className="text-accent font-mono text-sm">01.</span>Summary
           </h3>
-          <p className="text-text-secondary leading-relaxed">{personalInfo.about[0]}</p>
+          <p className="text-text-secondary leading-relaxed">{t("about.p1")}</p>
         </section>
 
         {/* Career Goal */}
