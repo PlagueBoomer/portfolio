@@ -22,7 +22,7 @@ export const projects: Project[] = [
     longDescription:
       "HireMate is a personal AI assistant designed to streamline the job search process. It uses a local language model to analyze job postings, match them against your skills and preferences, and help manage the entire application pipeline. Built with privacy in mind - all processing happens locally.",
     status: "In Development",
-    technologies: ["Python", "Local LLM", "FastAPI", "SQLite", "React"],
+    technologies: ["Python", "FastAPI", "PostgreSQL", "Ollama", "HTMX", "Docker"],
     links: {
       github: "https://github.com/PlagueBoomer/hiremate-showcase",
     },
