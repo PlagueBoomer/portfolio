@@ -14,75 +14,52 @@ function getNodeStyle(type: HomelabNode["type"]) {
 }
 
 export default function HomelabDiagram({ topology }: { topology: HomelabNode[] }) {
-  const internet = topology.find((n) => n.id === "internet");
-  const router = topology.find((n) => n.id === "router");
-  const adguard = topology.find((n) => n.id === "adguard");
-  const nginx = topology.find((n) => n.id === "nginx");
-  const proxmox = topology.find((n) => n.id === "proxmox");
-  const nas = topology.find((n) => n.id === "nas");
   const services = topology.filter((n) => n.type === "service");
 
-  const topNodes = [internet, router, adguard, nginx].filter(Boolean) as HomelabNode[];
+  const chainNodes = [
+    topology.find((n) => n.id === "internet"),
+    topology.find((n) => n.id === "router"),
+    topology.find((n) => n.id === "adguard"),
+    topology.find((n) => n.id === "nginx"),
+    topology.find((n) => n.id === "proxmox"),
+  ].filter(Boolean) as HomelabNode[];
 
   return (
     <div className="glass-card p-6 md:p-10">
       <div className="flex flex-col items-center gap-0">
-        {/* Top chain: Internet → Router → AdGuard → Nginx */}
-        {topNodes.map((node, i) => (
+        {/* Vertical chain */}
+        {chainNodes.map((node, i) => (
           <div key={node.id} className="flex flex-col items-center">
             <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(node.type)}`}>
               {node.label}
             </div>
-            {i < topNodes.length - 1 && (
-              <>
+            {i < chainNodes.length - 1 && (
+              <div className="flex flex-col items-center">
                 <div className="w-px h-6 bg-border" />
-                <svg width="10" height="6" viewBox="0 0 10 6" className="text-border -mt-0.5 mb-0.5">
+                <svg width="10" height="6" viewBox="0 0 10 6" className="text-border">
                   <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
                 </svg>
-              </>
+              </div>
             )}
           </div>
         ))}
 
-        {/* Split to Proxmox and NAS */}
+        {/* Connector line down from Proxmox */}
         <div className="w-px h-6 bg-border" />
-        <div className="flex items-start gap-8 md:gap-16">
-          {/* Proxmox branch */}
-          <div className="flex flex-col items-center">
-            <svg width="10" height="6" viewBox="0 0 10 6" className="text-border mb-1">
-              <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
-            </svg>
-            {proxmox && (
-              <div className={`flex items-center gap-2 px-5 py-3 rounded-lg border font-semibold text-sm ${getNodeStyle(proxmox.type)}`}>
-                {proxmox.label}
-              </div>
-            )}
-            <div className="w-px h-6 bg-border" />
 
-            {/* Services grid */}
-            <div className="relative w-full">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                {services.map((service) => (
-                  <div key={service.id} className={`flex items-center justify-center px-2 py-2 rounded-lg border text-xs font-medium text-center ${getNodeStyle(service.type)}`}>
-                    {service.label}
-                  </div>
-                ))}
+        {/* Services + NAS grid */}
+        <div className="w-full max-w-2xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+            {services.map((service) => (
+              <div key={service.id} className={`flex items-center justify-center px-2 py-2.5 rounded-lg border text-xs font-medium text-center ${getNodeStyle(service.type)}`}>
+                {service.label}
               </div>
+            ))}
+            {/* NAS as special node in the grid */}
+            <div className={`flex items-center justify-center px-2 py-2.5 rounded-lg border text-xs font-medium text-center ${getNodeStyle("storage")}`}>
+              NAS
             </div>
           </div>
-
-          {/* NAS branch */}
-          {nas && (
-            <div className="flex flex-col items-center">
-              <svg width="10" height="6" viewBox="0 0 10 6" className="text-border mb-1">
-                <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
-              </svg>
-              <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(nas.type)}`}>
-                {nas.label}
-              </div>
-              <p className="text-text-secondary text-xs mt-2 text-center max-w-[100px]">Media, photos, user data</p>
-            </div>
-          )}
         </div>
       </div>
 
