@@ -5,79 +5,95 @@ import { HomelabNode } from "@/data/homelab";
 function getNodeStyle(type: HomelabNode["type"]) {
   switch (type) {
     case "network": return "bg-blue-500/10 border-blue-500/30 text-blue-400";
+    case "router": return "bg-cyan-500/10 border-cyan-500/30 text-cyan-400";
     case "gateway": return "bg-green-500/10 border-green-500/30 text-green-400";
     case "hypervisor": return "bg-purple-500/10 border-purple-500/30 text-purple-400";
+    case "storage": return "bg-orange-500/10 border-orange-500/30 text-orange-400";
     case "service": return "bg-surface-light border-border text-text-primary";
   }
 }
 
 export default function HomelabDiagram({ topology }: { topology: HomelabNode[] }) {
   const internet = topology.find((n) => n.id === "internet");
+  const router = topology.find((n) => n.id === "router");
   const adguard = topology.find((n) => n.id === "adguard");
+  const nginx = topology.find((n) => n.id === "nginx");
   const proxmox = topology.find((n) => n.id === "proxmox");
+  const nas = topology.find((n) => n.id === "nas");
   const services = topology.filter((n) => n.type === "service");
+
+  const topNodes = [internet, router, adguard, nginx].filter(Boolean) as HomelabNode[];
 
   return (
     <div className="glass-card p-6 md:p-10">
       <div className="flex flex-col items-center gap-0">
-        {/* Internet */}
-        {internet && (
-          <>
-            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(internet.type)}`}>
-              {internet.label}
+        {/* Top chain: Internet → Router → AdGuard → Nginx */}
+        {topNodes.map((node, i) => (
+          <div key={node.id} className="flex flex-col items-center">
+            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(node.type)}`}>
+              {node.label}
             </div>
-            <div className="w-px h-8 bg-border" />
-            <svg width="12" height="8" viewBox="0 0 12 8" className="text-border -mt-1 mb-1">
-              <path d="M6 8L0 0h12L6 8z" fill="currentColor" />
-            </svg>
-          </>
-        )}
-
-        {/* AdGuard */}
-        {adguard && (
-          <>
-            <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(adguard.type)}`}>
-              {adguard.label}
-            </div>
-            <div className="w-px h-8 bg-border" />
-            <svg width="12" height="8" viewBox="0 0 12 8" className="text-border -mt-1 mb-1">
-              <path d="M6 8L0 0h12L6 8z" fill="currentColor" />
-            </svg>
-          </>
-        )}
-
-        {/* Proxmox */}
-        {proxmox && (
-          <>
-            <div className={`flex items-center gap-2 px-5 py-3 rounded-lg border font-semibold text-sm ${getNodeStyle(proxmox.type)}`}>
-              {proxmox.label}
-            </div>
-            <div className="w-px h-8 bg-border" />
-          </>
-        )}
-
-        {/* Services */}
-        <div className="relative w-full max-w-lg">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px bg-border w-[80%]" />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 pt-8">
-            {services.map((service) => (
-              <div key={service.id} className="flex flex-col items-center">
-                <div className="w-px h-4 bg-border -mt-4 mb-2" />
-                <div className={`flex flex-col items-center gap-1 px-3 py-2.5 rounded-lg border text-xs font-medium text-center w-full ${getNodeStyle(service.type)}`}>
-                  <span className="mt-1">{service.label}</span>
-                </div>
-              </div>
-            ))}
+            {i < topNodes.length - 1 && (
+              <>
+                <div className="w-px h-6 bg-border" />
+                <svg width="10" height="6" viewBox="0 0 10 6" className="text-border -mt-0.5 mb-0.5">
+                  <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
+                </svg>
+              </>
+            )}
           </div>
+        ))}
+
+        {/* Split to Proxmox and NAS */}
+        <div className="w-px h-6 bg-border" />
+        <div className="flex items-start gap-8 md:gap-16">
+          {/* Proxmox branch */}
+          <div className="flex flex-col items-center">
+            <svg width="10" height="6" viewBox="0 0 10 6" className="text-border mb-1">
+              <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
+            </svg>
+            {proxmox && (
+              <div className={`flex items-center gap-2 px-5 py-3 rounded-lg border font-semibold text-sm ${getNodeStyle(proxmox.type)}`}>
+                {proxmox.label}
+              </div>
+            )}
+            <div className="w-px h-6 bg-border" />
+
+            {/* Services grid */}
+            <div className="relative w-full">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {services.map((service) => (
+                  <div key={service.id} className={`flex items-center justify-center px-2 py-2 rounded-lg border text-xs font-medium text-center ${getNodeStyle(service.type)}`}>
+                    {service.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* NAS branch */}
+          {nas && (
+            <div className="flex flex-col items-center">
+              <svg width="10" height="6" viewBox="0 0 10 6" className="text-border mb-1">
+                <path d="M5 6L0 0h10L5 6z" fill="currentColor" />
+              </svg>
+              <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border font-medium text-sm ${getNodeStyle(nas.type)}`}>
+                {nas.label}
+              </div>
+              <p className="text-text-secondary text-xs mt-2 text-center max-w-[100px]">Media, photos, user data</p>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Legend */}
       <div className="mt-10 pt-6 border-t border-border flex flex-wrap gap-4 justify-center">
         {([
-          { type: "network" as const, label: "Network" },
-          { type: "gateway" as const, label: "Gateway" },
+          { type: "network" as const, label: "Internet" },
+          { type: "router" as const, label: "Router" },
+          { type: "gateway" as const, label: "DNS / Proxy" },
           { type: "hypervisor" as const, label: "Hypervisor" },
+          { type: "storage" as const, label: "Storage" },
           { type: "service" as const, label: "Service" },
         ]).map(({ type, label }) => (
           <div key={type} className="flex items-center gap-2 text-xs">
