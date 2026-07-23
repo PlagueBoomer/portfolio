@@ -55,9 +55,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = useCallback(() => {
     setTheme((current) => {
-      const order: Theme[] = ["system", "dark", "light"];
-      const currentIndex = order.indexOf(current);
-      const next = order[(currentIndex + 1) % order.length];
+      const resolved = current === "system" ? getSystemTheme() : current;
+      const next = resolved === "dark" ? "light" : "dark";
       localStorage.setItem("theme", next);
       return next;
     });
