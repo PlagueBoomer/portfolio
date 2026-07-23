@@ -1,42 +1,36 @@
-import { Metadata } from "next";
+"use client";
+
 import { homelabServices, networkTopology, backupSchedule, infrastructureStats } from "@/data/homelab";
 import HomelabDiagram from "@/components/HomelabDiagram";
 import ServiceCard from "@/components/ServiceCard";
-
-export const metadata: Metadata = {
-  title: "Homelab | Maciej B\u0142\u0119dowski",
-  description: "Self-hosted infrastructure: 17+ LXC containers on Proxmox, automated backups, 25+ services.",
-};
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HomelabPage() {
+  const { t } = useLanguage();
+
   const categories = [
-    { key: "core", label: "Core Infrastructure" },
-    { key: "networking", label: "Networking & DNS" },
-    { key: "media", label: "Media & Entertainment" },
-    { key: "monitoring", label: "Monitoring & Observability" },
-    { key: "backup", label: "Backup" },
-    { key: "productivity", label: "Productivity & Tools" },
+    { key: "core", labelKey: "cat.core" },
+    { key: "networking", labelKey: "cat.networking" },
+    { key: "media", labelKey: "cat.media" },
+    { key: "monitoring", labelKey: "cat.monitoring" },
+    { key: "backup", labelKey: "cat.backup" },
+    { key: "productivity", labelKey: "cat.productivity" },
   ] as const;
 
   return (
     <div className="section-container">
-      {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Homelab</h1>
-        <p className="text-text-secondary text-lg max-w-2xl">
-          Self-hosted infrastructure built on Proxmox VE with {infrastructureStats.containers} LXC containers,
-          {" "}{infrastructureStats.services} services, and automated weekly backups.
-          Everything accessible via local DNS ({infrastructureStats.domains}).
-        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t("homelab.title")}</h1>
+        <p className="text-text-secondary text-lg max-w-2xl">{t("homelab.description")}</p>
       </div>
 
-      {/* Quick Stats */}
+      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         {[
-          { label: "Containers", value: infrastructureStats.containers },
-          { label: "Services", value: infrastructureStats.services },
-          { label: "Local Domains", value: "25+" },
-          { label: "Backup", value: "Weekly" },
+          { label: t("stats.containers"), value: infrastructureStats.containers },
+          { label: t("stats.services"), value: infrastructureStats.services },
+          { label: t("stats.domains"), value: "25+" },
+          { label: t("stats.backup"), value: t("stats.weekly") },
         ].map((stat) => (
           <div key={stat.label} className="glass-card text-center py-4">
             <p className="text-accent font-bold text-2xl">{stat.value}</p>
@@ -47,19 +41,19 @@ export default function HomelabPage() {
 
       {/* Network Topology */}
       <section className="mb-16">
-        <h2 className="text-xl font-semibold text-text-primary mb-6">Network Architecture</h2>
+        <h2 className="text-xl font-semibold text-text-primary mb-6">{t("homelab.architecture")}</h2>
         <HomelabDiagram topology={networkTopology} />
       </section>
 
-      {/* Services by Category */}
+      {/* Services */}
       <section className="mb-16">
-        <h2 className="text-xl font-semibold text-text-primary mb-8">Services</h2>
-        {categories.map(({ key, label }) => {
+        <h2 className="text-xl font-semibold text-text-primary mb-8">{t("homelab.services")}</h2>
+        {categories.map(({ key, labelKey }) => {
           const services = homelabServices.filter((s) => s.category === key);
           if (services.length === 0) return null;
           return (
             <div key={key} className="mb-12">
-              <h3 className="text-text-secondary font-mono text-sm uppercase tracking-wider mb-4">{label}</h3>
+              <h3 className="text-text-secondary font-mono text-sm uppercase tracking-wider mb-4">{t(labelKey)}</h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {services.map((service) => (
                   <ServiceCard key={service.name} service={service} />
@@ -70,13 +64,10 @@ export default function HomelabPage() {
         })}
       </section>
 
-      {/* Backup System */}
+      {/* Backup */}
       <section className="border-t border-border pt-12 mb-16">
-        <h2 className="text-xl font-semibold text-text-primary mb-6">Automated Backup System</h2>
-        <p className="text-text-secondary mb-6 max-w-2xl">
-          Every Sunday night, the Proxmox Backup Server is automatically powered on via a Philips Hue smart plug,
-          performs a full backup of all containers and VMs, then gracefully shuts down. Fully automated, zero manual intervention.
-        </p>
+        <h2 className="text-xl font-semibold text-text-primary mb-6">{t("homelab.backup.title")}</h2>
+        <p className="text-text-secondary mb-6 max-w-2xl">{t("homelab.backup.description")}</p>
         <div className="glass-card">
           <div className="space-y-4">
             {backupSchedule.map((item, i) => (
@@ -92,32 +83,30 @@ export default function HomelabPage() {
         </div>
       </section>
 
-      {/* Infrastructure Details */}
+      {/* Hardware & Philosophy */}
       <section className="border-t border-border pt-12">
-        <h2 className="text-xl font-semibold text-text-primary mb-6">Hardware & Philosophy</h2>
+        <h2 className="text-xl font-semibold text-text-primary mb-6">{t("homelab.hardware")}</h2>
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="glass-card">
-            <h3 className="text-text-primary font-medium mb-3">Infrastructure</h3>
+            <h3 className="text-text-primary font-medium mb-3">{t("homelab.infrastructure")}</h3>
             <ul className="space-y-2 text-text-secondary text-sm">
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Proxmox VE (Type 1 Hypervisor)</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>17+ LXC containers</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Nginx Proxy Manager for 25+ domains</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>AdGuard Home for DNS &amp; ad blocking</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>PBS for automated weekly backups</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>NAS for media &amp; photo storage</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Philips Hue smart plug automation</li>
+              {["proxmox", "containers", "nginx", "adguard", "pbs", "nas", "hue"].map((key) => (
+                <li key={key} className="flex items-center gap-2">
+                  <span className="text-accent font-mono text-xs">&#9656;</span>
+                  {t(`homelab.infra.${key}`)}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="glass-card">
-            <h3 className="text-text-primary font-medium mb-3">Philosophy</h3>
+            <h3 className="text-text-primary font-medium mb-3">{t("homelab.philosophy")}</h3>
             <ul className="space-y-2 text-text-secondary text-sm">
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Self-host everything possible</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Privacy-first approach</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Automated backups (zero manual steps)</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Monitor everything</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Document everything (Wiki.js)</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Local DNS for clean URLs</li>
-              <li className="flex items-center gap-2"><span className="text-accent font-mono text-xs">&#9656;</span>Energy-efficient (PBS only runs when needed)</li>
+              {["selfhost", "privacy", "backup", "monitor", "docs", "dns", "energy"].map((key) => (
+                <li key={key} className="flex items-center gap-2">
+                  <span className="text-accent font-mono text-xs">&#9656;</span>
+                  {t(`homelab.phil.${key}`)}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

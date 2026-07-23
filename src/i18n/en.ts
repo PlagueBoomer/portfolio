@@ -30,6 +30,9 @@ export const translations: Record<string, string> = {
   "projects.title": "Projects",
   "projects.subtitle": "What I'm building.",
   "projects.viewAll": "View All Projects",
+  "projects.page.title": "Projects",
+  "projects.page.subtitle":
+    "Things I'm building, maintaining, and experimenting with. From AI-powered tools to self-hosted infrastructure.",
 
   // Contact
   "contact.title": "Contact",
@@ -55,11 +58,13 @@ export const translations: Record<string, string> = {
 
   // CV
   "cv.title": "Curriculum Vitae",
-  "cv.updated": "Online version • Last updated 2025",
+  "cv.updated": "Online version \u2022 Last updated 2025",
   "cv.download.en": "Download EN",
   "cv.download.pl": "Download PL",
   "cv.summary": "Summary",
   "cv.goal": "Career Goal",
+  "cv.goal.1": "Develop skills in systems administration and technical support to improve the efficiency of IT infrastructure.",
+  "cv.goal.2": "Implement new solutions and streamline support processes to improve user satisfaction and productivity.",
   "cv.experience": "Professional Experience",
   "cv.skills": "Skills & Tools",
   "cv.education": "Education",
@@ -87,4 +92,20 @@ export const translations: Record<string, string> = {
   "cat.monitoring": "Monitoring & Observability",
   "cat.backup": "Backup",
   "cat.productivity": "Productivity & Tools",
+
+  // Homelab - extra
+  "homelab.infra.proxmox": "Proxmox VE (Type 1 Hypervisor)",
+  "homelab.infra.containers": "17+ LXC containers",
+  "homelab.infra.nginx": "Nginx Proxy Manager for 25+ domains",
+  "homelab.infra.adguard": "AdGuard Home for DNS & ad blocking",
+  "homelab.infra.pbs": "PBS for automated weekly backups",
+  "homelab.infra.nas": "NAS for media & photo storage",
+  "homelab.infra.hue": "Philips Hue smart plug automation",
+  "homelab.phil.selfhost": "Self-host everything possible",
+  "homelab.phil.privacy": "Privacy-first approach",
+  "homelab.phil.backup": "Automated backups (zero manual steps)",
+  "homelab.phil.monitor": "Monitor everything",
+  "homelab.phil.docs": "Document everything (Wiki.js)",
+  "homelab.phil.dns": "Local DNS for clean URLs",
+  "homelab.phil.energy": "Energy-efficient (PBS only runs when needed)",
 };

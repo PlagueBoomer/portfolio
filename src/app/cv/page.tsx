@@ -11,21 +11,21 @@ export default function CVPage() {
     <div className="section-container">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">Curriculum Vitae</h1>
-          <p className="text-text-secondary">Online version &bull; Last updated 2025</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">{t("cv.title")}</h1>
+          <p className="text-text-secondary">{t("cv.updated")}</p>
         </div>
         <div className="flex flex-wrap gap-3 self-start">
           <a href="/CV_MaciejBledowski_EN.pdf" download className="btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download EN
+            {t("cv.download.en")}
           </a>
           <a href="/CV_MaciejBledowski_PL.pdf" download className="btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            Download PL
+            {t("cv.download.pl")}
           </a>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default function CVPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
-                {personalInfo.location}
+                {t("contact.location.value")}
               </span>
               <span className="flex items-center gap-1.5">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -53,7 +53,7 @@ export default function CVPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                 </svg>
-                Open for remote work
+                {t("contact.remote")}
               </span>
             </div>
           </div>
@@ -62,7 +62,7 @@ export default function CVPage() {
         {/* Summary */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">01.</span>Summary
+            <span className="text-accent font-mono text-sm">01.</span>{t("cv.summary")}
           </h3>
           <p className="text-text-secondary leading-relaxed">{t("about.p1")}</p>
         </section>
@@ -70,16 +70,16 @@ export default function CVPage() {
         {/* Career Goal */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">02.</span>Career Goal
+            <span className="text-accent font-mono text-sm">02.</span>{t("cv.goal")}
           </h3>
           <ul className="space-y-2 text-text-secondary text-sm">
             <li className="flex items-start gap-2">
               <span className="text-accent font-mono text-xs mt-1">&#9656;</span>
-              Develop skills in systems administration and technical support to improve the efficiency of IT infrastructure.
+              {t("cv.goal.1")}
             </li>
             <li className="flex items-start gap-2">
               <span className="text-accent font-mono text-xs mt-1">&#9656;</span>
-              Implement new solutions and streamline support processes to improve user satisfaction and productivity.
+              {t("cv.goal.2")}
             </li>
           </ul>
         </section>
@@ -87,7 +87,7 @@ export default function CVPage() {
         {/* Experience */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">03.</span>Professional Experience
+            <span className="text-accent font-mono text-sm">03.</span>{t("cv.experience")}
           </h3>
           <div className="space-y-6">
             {experiences.map((exp, i) => (
@@ -105,10 +105,10 @@ export default function CVPage() {
           </div>
         </section>
 
-        {/* Skills & Tools */}
+        {/* Skills */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">04.</span>Skills & Tools
+            <span className="text-accent font-mono text-sm">04.</span>{t("cv.skills")}
           </h3>
           <div className="glass-card">
             <div className="flex flex-wrap gap-2">
@@ -122,12 +122,12 @@ export default function CVPage() {
         {/* Education */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">05.</span>Education
+            <span className="text-accent font-mono text-sm">05.</span>{t("cv.education")}
           </h3>
           <div className="glass-card">
             <h4 className="text-text-primary font-medium">{personalInfo.education.school}</h4>
             <p className="text-text-secondary text-sm mt-1">
-              Field: {personalInfo.education.field} &bull; Specialization: {personalInfo.education.specialization}
+              {personalInfo.education.field} &bull; {personalInfo.education.specialization}
             </p>
             <p className="text-text-secondary text-sm font-mono mt-1">{personalInfo.education.period}</p>
           </div>
@@ -136,7 +136,7 @@ export default function CVPage() {
         {/* Languages */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">06.</span>Languages
+            <span className="text-accent font-mono text-sm">06.</span>{t("cv.languages")}
           </h3>
           <div className="glass-card">
             <div className="flex flex-wrap gap-4">
@@ -152,7 +152,7 @@ export default function CVPage() {
         {/* Links */}
         <section>
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">07.</span>Links
+            <span className="text-accent font-mono text-sm">07.</span>{t("cv.links")}
           </h3>
           <div className="glass-card">
             <div className="flex flex-wrap gap-4">
