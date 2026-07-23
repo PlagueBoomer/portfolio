@@ -36,7 +36,7 @@
   }
 
   ::selection {
-    @apply bg-accent/30;
+    background-color: rgba(87, 255, 0, 0.3);
   }
 
   ::-webkit-scrollbar {
