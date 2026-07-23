@@ -71,6 +71,10 @@ const commands: Record<string, string | string[]> = {
   hostname: "maciejbledowski.pl",
   ls: "projects/  skills/  cv.txt  .config/  homelab/",
   "cat /etc/os-release": 'NAME="EndeavourOS"\nSHELL="fish"\nWM="Sway"\nEDITOR="VS Code"\nSERVER="Proxmox VE"',
+  "rm -rf /": "⚠️  WARNING: This operation is dangerous.\n\nNice try 😄",
+  "rm -rf /*": "⚠️  WARNING: This operation is dangerous.\n\nNice try 😄",
+  "sudo rm -rf /": "⚠️  WARNING: This operation is dangerous.\n\nNice try 😄",
+  "sudo rm -rf /*": "⚠️  WARNING: This operation is dangerous.\n\nNice try 😄",
 };
 
 export default function Terminal({ onClose }: { onClose: () => void }) {
