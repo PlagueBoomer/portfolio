@@ -45,7 +45,9 @@ export const projects: Project[] = [
       "Jellyfin",
       "Immich",
     ],
-    links: {},
+    links: {
+      live: "/homelab",
+    },
     featured: true,
   },
   {
