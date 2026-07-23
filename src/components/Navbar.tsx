@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/personal";
 import { useLanguage } from "@/context/LanguageContext";
 import ThemeSwitcher from "./ThemeSwitcher";
-import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -36,13 +35,11 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
-            <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <LanguageSwitcher />
           <ThemeSwitcher />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
