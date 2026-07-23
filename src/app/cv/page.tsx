@@ -15,12 +15,20 @@ export default function CVPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">Curriculum Vitae</h1>
           <p className="text-text-secondary">Online version &bull; Last updated 2025</p>
         </div>
-        <a href="/cv.pdf" download className="btn-primary self-start">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download PDF
-        </a>
+        <div className="flex flex-wrap gap-3 self-start">
+          <a href="/CV_MaciejBledowski_EN.pdf" download className="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download EN
+          </a>
+          <a href="/CV_MaciejBledowski_PL.pdf" download className="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PL
+          </a>
+        </div>
       </div>
 
       <div className="max-w-3xl">
