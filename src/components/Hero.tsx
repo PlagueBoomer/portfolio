@@ -22,9 +22,8 @@ export default function Hero() {
           </p>
 
           <p className="text-text-secondary text-lg max-w-2xl mb-12 leading-relaxed animate-slide-up">
-            Building infrastructure, solving problems, and self-hosting everything.
-            Currently developing <span className="text-accent font-medium">HireMate</span> —
-            an AI-powered job search assistant.
+            3+ years managing end-user devices, identity systems, and office infrastructure.
+            Passionate about open-source, self-hosting, and building things from the ground up.
           </p>
 
           <div className="flex flex-wrap gap-4 animate-slide-up">

@@ -8,43 +8,43 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "Xperi",
+    company: "Freelance",
+    role: "IT Support & Skills Development",
+    period: "12/2025 - Present",
+    description:
+      "Delivering independent IT support for individual clients: hardware diagnostics and repair, peripheral device configuration (printers), and OS optimization. Expanding Linux administration skills and maintaining a home lab environment for advanced system configuration.",
+    technologies: ["Linux", "Hardware Diagnostics", "Home Lab", "Networking"],
+  },
+  {
+    company: "University of Warsaw / Warner Bros. Discovery",
+    role: "Linux Systems Support & IT Projects",
+    period: "09/2025 - 11/2025",
+    description:
+      "University of Warsaw: Technical support in a Linux-dominant academic environment (Ubuntu, Debian), including hardware and system diagnostics for researchers and engineers. Warner Bros. Discovery: Ad-hoc IT intervention including infrastructure support and hardware inventory.",
+    technologies: ["Linux", "Ubuntu", "Debian", "Hardware Diagnostics"],
+  },
+  {
+    company: "Xperi Inc.",
     role: "IT Support Engineer",
-    period: "2023 - Present",
+    period: "09/2024 - 05/2025",
     description:
-      "Providing technical support for internal systems, managing infrastructure, troubleshooting network and hardware issues across the organization.",
-    technologies: ["Linux", "Windows Server", "Networking", "Active Directory"],
+      "The only IT support engineer for the Warsaw office (~200 employees). Full responsibility for on-site IT support including video conferencing systems. Handled 20+ daily tickets in ServiceNow. Managed laptop fleet (Windows, macOS, Linux) via Intune and Jamf Pro. Administered accounts in Okta, Active Directory, and AWS. Provided VIP support for senior leadership.",
+    technologies: ["Intune", "Jamf Pro", "Okta", "Active Directory", "ServiceNow", "AWS"],
   },
   {
-    company: "Coty",
-    role: "IT Support Specialist",
-    period: "2022 - 2023",
+    company: "Euvic IT / KPMG / LUX MED / Coty",
+    role: "Short-term IT Projects & Support",
+    period: "02/2023 - 09/2024",
     description:
-      "End-user support, device management, and system administration in a global corporate environment.",
-    technologies: ["SCCM", "Azure AD", "Office 365", "ITIL"],
+      "Euvic IT: Prepared and configured 100+ Windows workstations for corporate users. KPMG: Hardware diagnostics, ITSM tickets, AD administration, VIP support. LUX MED: Remote IT support, ticketing systems, app configuration. Coty: Global support in English, user account management.",
+    technologies: ["Active Directory", "ITSM", "Windows", "VIP Support"],
   },
   {
-    company: "ASUS",
-    role: "Technical Support Engineer",
-    period: "2021 - 2022",
+    company: "ASUS Poland Sp. z o.o.",
+    role: "Technical Customer Service Specialist",
+    period: "10/2021 - 01/2023",
     description:
-      "Hardware diagnostics, RMA processes, and customer-facing technical support for consumer and enterprise products.",
-    technologies: ["Hardware Diagnostics", "RMA", "Customer Support"],
-  },
-  {
-    company: "KPMG",
-    role: "IT Support",
-    period: "2020 - 2021",
-    description:
-      "First and second line support in a high-security corporate environment. Managing user access and resolving infrastructure issues.",
-    technologies: ["ServiceNow", "VPN", "Security Compliance"],
-  },
-  {
-    company: "NTT",
-    role: "Service Desk Analyst",
-    period: "2019 - 2020",
-    description:
-      "First point of contact for IT incidents and service requests. Ticket management, escalation, and resolution within SLA.",
-    technologies: ["ITSM", "Remote Support", "Incident Management"],
+      "Handling customer calls and providing prompt technical assistance. Providing support, sharing information about new features and solutions. Active presence on technical forums, building a support community. Monitoring trends and analyzing customer requests to identify recurring issues.",
+    technologies: ["Customer Support", "Hardware", "Technical Forums", "Troubleshooting"],
   },
 ];

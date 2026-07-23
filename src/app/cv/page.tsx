@@ -4,7 +4,7 @@ import { experiences } from "@/data/experience";
 
 export const metadata: Metadata = {
   title: "CV | Maciej B\u0142\u0119dowski",
-  description: "Curriculum Vitae - Maciej B\u0142\u0119dowski, IT Support Engineer.",
+  description: "Curriculum Vitae - Maciej B\u0142\u0119dowski, IT Support Specialist.",
 };
 
 export default function CVPage() {
@@ -13,7 +13,7 @@ export default function CVPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">Curriculum Vitae</h1>
-          <p className="text-text-secondary">Online version &bull; Last updated 2024</p>
+          <p className="text-text-secondary">Online version &bull; Last updated 2025</p>
         </div>
         <a href="/cv.pdf" download className="btn-primary self-start">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -42,6 +42,12 @@ export default function CVPage() {
                 </svg>
                 {personalInfo.email}
               </span>
+              <span className="flex items-center gap-1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                Open for remote work
+              </span>
             </div>
           </div>
         </section>
@@ -54,10 +60,27 @@ export default function CVPage() {
           <p className="text-text-secondary leading-relaxed">{personalInfo.about[0]}</p>
         </section>
 
+        {/* Career Goal */}
+        <section className="mb-12">
+          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+            <span className="text-accent font-mono text-sm">02.</span>Career Goal
+          </h3>
+          <ul className="space-y-2 text-text-secondary text-sm">
+            <li className="flex items-start gap-2">
+              <span className="text-accent font-mono text-xs mt-1">&#9656;</span>
+              Develop skills in systems administration and technical support to improve the efficiency of IT infrastructure.
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-accent font-mono text-xs mt-1">&#9656;</span>
+              Implement new solutions and streamline support processes to improve user satisfaction and productivity.
+            </li>
+          </ul>
+        </section>
+
         {/* Experience */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">02.</span>Professional Experience
+            <span className="text-accent font-mono text-sm">03.</span>Professional Experience
           </h3>
           <div className="space-y-6">
             {experiences.map((exp, i) => (
@@ -75,10 +98,10 @@ export default function CVPage() {
           </div>
         </section>
 
-        {/* Skills */}
+        {/* Skills & Tools */}
         <section className="mb-12">
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">03.</span>Skills & Technologies
+            <span className="text-accent font-mono text-sm">04.</span>Skills & Tools
           </h3>
           <div className="glass-card">
             <div className="flex flex-wrap gap-2">
@@ -89,10 +112,40 @@ export default function CVPage() {
           </div>
         </section>
 
+        {/* Education */}
+        <section className="mb-12">
+          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+            <span className="text-accent font-mono text-sm">05.</span>Education
+          </h3>
+          <div className="glass-card">
+            <h4 className="text-text-primary font-medium">{personalInfo.education.school}</h4>
+            <p className="text-text-secondary text-sm mt-1">
+              Field: {personalInfo.education.field} &bull; Specialization: {personalInfo.education.specialization}
+            </p>
+            <p className="text-text-secondary text-sm font-mono mt-1">{personalInfo.education.period}</p>
+          </div>
+        </section>
+
+        {/* Languages */}
+        <section className="mb-12">
+          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+            <span className="text-accent font-mono text-sm">06.</span>Languages
+          </h3>
+          <div className="glass-card">
+            <div className="flex flex-wrap gap-4">
+              {personalInfo.languages.map((lang) => (
+                <span key={lang.name} className="text-text-secondary text-sm">
+                  <span className="text-text-primary font-medium">{lang.name}</span> — {lang.level}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Links */}
         <section>
           <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-            <span className="text-accent font-mono text-sm">04.</span>Links
+            <span className="text-accent font-mono text-sm">07.</span>Links
           </h3>
           <div className="glass-card">
             <div className="flex flex-wrap gap-4">
