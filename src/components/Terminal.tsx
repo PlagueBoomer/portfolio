@@ -11,72 +11,71 @@ const commands: Record<string, string | string[]> = {
   help: [
     "Available commands:",
     "  whoami       - Who am I?",
+    "  about        - About me",
+    "  skills       - My tech stack",
     "  ls projects  - List projects",
-    "  ls skills    - List skills",
-    "  cat cv.txt   - Quick CV summary",
+    "  contact      - How to reach me",
     "  uptime       - How long in IT",
     "  neofetch     - System info",
     "  sudo hire me - Try it ;)",
     "  clear        - Clear terminal",
     "  exit         - Close terminal",
   ].join("\n"),
-  whoami: "Maciej Błędowski — IT Support Engineer, Homelab Enthusiast, Builder of HireMate",
-  "ls projects": [
-    "drwxr-xr-x  hiremate/        - AI-powered job search assistant",
-    "drwxr-xr-x  homelab/         - 17+ LXC containers on Proxmox",
-    "drwxr-xr-x  portfolio/       - This website (Next.js + Tailwind)",
+  whoami: "maciej",
+  about: [
+    "IT Support Engineer with 3+ years of experience.",
+    "Sole IT for a 200-person office. Homelab enthusiast.",
+    "Self-hosting everything, building tools, breaking things.",
   ].join("\n"),
-  "ls skills": [
+  skills: [
     "Windows  macOS  Linux  Intune  Jamf Pro  Okta",
     "Active Directory  ServiceNow  Docker  Proxmox",
-    "Bash  Python  Networking  VPN  DNS  DHCP",
+    "Bash  Fish  Python  Networking  VPN  DNS  DHCP",
   ].join("\n"),
-  "cat cv.txt": [
-    "┌─────────────────────────────────────────────┐",
-    "│  Maciej Błędowski                           │",
-    "│  IT | Help Desk | System Administration     │",
-    "│                                             │",
-    "│  3+ years in IT support                     │",
-    "│  Sole IT engineer for 200-person office     │",
-    "│  MDM: Intune, Jamf Pro                      │",
-    "│  Identity: Active Directory, Okta, AWS      │",
-    "│  Homelab: Proxmox, 17+ containers           │",
-    "│                                             │",
-    "│  Contact: bledowskimaciej@gmail.com         │",
-    "└─────────────────────────────────────────────┘",
+  "ls projects": [
+    "drwxr-xr-x  hiremate/        - AI job search assistant (local LLM)",
+    "drwxr-xr-x  homelab/         - 17+ containers on Proxmox",
+    "drwxr-xr-x  portfolio/       - This website",
   ].join("\n"),
-  uptime: "up 3 years, 6 months (since Oct 2021)",
+  contact: [
+    "Email:    bledowskimaciej@gmail.com",
+    "LinkedIn: linkedin.com/in/maciejbledowski",
+    "GitHub:   github.com/PlagueBoomer",
+    "Web:      maciejbledowski.pl",
+  ].join("\n"),
+  uptime: "Portfolio online since 2025. In IT since 2021.",
   neofetch: [
-    "        .-/+oossssoo+/-.        maciej@maciejbledowski.pl",
-    "    `:+ssssssssssssssssss+:`    ─────────────────────────",
-    "  -+ssssssssssssssssssyyssss+-  OS: Proxmox VE 8.x",
-    " .osssssssssssssssssssdMMMNy..  Host: Intel NUC",
-    " +ssssssssssssssssssshdmmNNm..  Containers: 17+ LXC",
-    "                                Services: 25+",
-    "  ████████████████████████████  Shell: bash + zsh",
-    "  ████████████████████████████  DNS: AdGuard Home",
-    "                                Backup: PBS (weekly)",
-    "                                Uptime: 99.9%",
+    "        .--.          maciej@portfolio",
+    "       |o_o |         ─────────────────",
+    "       |:_/ |         OS: EndeavourOS",
+    "      //   \\ \\        WM: Sway",
+    "     (|     | )       Shell: fish",
+    "    /'\\_   _/`\\       Editor: VS Code",
+    "    \\___)=(___/       Server: Proxmox VE",
+    "                      Containers: 17+ LXC",
+    "                      Services: 25+",
+    "                      DNS: AdGuard Home",
+    "                      Backup: PBS (weekly, automated)",
+    "                      Uptime: 99.9%",
   ].join("\n"),
   "sudo hire me": [
     "✓ Permission granted.",
     "",
-    "  Contact: bledowskimaciej@gmail.com",
+    "  Email:    bledowskimaciej@gmail.com",
     "  LinkedIn: linkedin.com/in/maciejbledowski",
     "  Location: Warsaw, Poland (remote-friendly)",
     "",
     "  Looking forward to hearing from you!",
   ].join("\n"),
   pwd: "/home/maciej/portfolio",
-  date: new Date().toUTCString(),
   hostname: "maciejbledowski.pl",
-  "cat /etc/os-release": 'NAME="Portfolio OS"\nVERSION="1.0"\nBUILT_WITH="Next.js, TypeScript, Tailwind CSS"\nHOSTED_ON="Vercel"',
   ls: "projects/  skills/  cv.txt  .config/  homelab/",
+  "cat /etc/os-release": 'NAME="EndeavourOS"\nSHELL="fish"\nWM="Sway"\nEDITOR="VS Code"\nSERVER="Proxmox VE"',
 };
 
 export default function Terminal({ onClose }: { onClose: () => void }) {
   const [lines, setLines] = useState<TerminalLine[]>([
-    { type: "output", text: 'Welcome to maciej@portfolio ~ Type "help" for available commands.' },
+    { type: "output", text: 'Welcome to maciej@portfolio\nType "help" for available commands.' },
   ]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -118,7 +117,7 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
     } else if (trimmed === "") {
       // empty command, just add prompt
     } else {
-      newLines.push({ type: "output", text: `bash: ${trimmed}: command not found. Type "help" for available commands.` });
+      newLines.push({ type: "output", text: `fish: Unknown command "${trimmed}". Type "help" for available commands.` });
     }
 
     setLines(newLines);
@@ -167,7 +166,7 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
             <div className="w-3 h-3 rounded-full bg-yellow-500" />
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
-          <span className="text-xs text-gray-400 ml-2 font-mono">maciej@portfolio:~</span>
+          <span className="text-xs text-gray-400 ml-2 font-mono">maciej@portfolio ~ fish</span>
         </div>
 
         {/* Terminal content */}
@@ -180,10 +179,12 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
             <div key={i} className="mb-1">
               {line.type === "input" ? (
                 <div>
-                  <span className="text-green-400">maciej@portfolio</span>
-                  <span className="text-gray-400">:</span>
+                  <span className="text-green-400">maciej</span>
+                  <span className="text-gray-400">@</span>
+                  <span className="text-cyan-400">portfolio</span>
+                  <span className="text-gray-400"> </span>
                   <span className="text-blue-400">~</span>
-                  <span className="text-gray-400">$ </span>
+                  <span className="text-gray-400">&gt; </span>
                   <span className="text-gray-200">{line.text}</span>
                 </div>
               ) : (
@@ -194,10 +195,12 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
 
           {/* Current input */}
           <div className="flex items-center">
-            <span className="text-green-400">maciej@portfolio</span>
-            <span className="text-gray-400">:</span>
+            <span className="text-green-400">maciej</span>
+            <span className="text-gray-400">@</span>
+            <span className="text-cyan-400">portfolio</span>
+            <span className="text-gray-400"> </span>
             <span className="text-blue-400">~</span>
-            <span className="text-gray-400">$ </span>
+            <span className="text-gray-400">&gt; </span>
             <input
               ref={inputRef}
               type="text"
