@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navigation } from "@/data/personal";
 import { useLanguage } from "@/context/LanguageContext";
-import ThemeSwitcher from "./ThemeSwitcher";
 import Terminal from "./Terminal";
 
 export default function Navbar() {
@@ -49,7 +48,6 @@ export default function Navbar() {
                 <line x1="12" y1="19" x2="20" y2="19" />
               </svg>
             </button>
-            <ThemeSwitcher />
           </div>
         </div>
 
@@ -65,7 +63,6 @@ export default function Navbar() {
               <line x1="12" y1="19" x2="20" y2="19" />
             </svg>
           </button>
-          <ThemeSwitcher />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-text-secondary hover:text-text-primary transition-colors p-1"
