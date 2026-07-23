@@ -18,13 +18,9 @@ export default function Navbar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <button
-            onClick={() => setTerminalOpen(true)}
-            className="text-text-primary font-semibold text-lg hover:text-accent transition-colors text-left"
-            title="Open terminal"
-          >
+          <Link href="/" className="text-text-primary font-semibold text-lg hover:text-accent transition-colors">
             <span className="font-mono text-accent">~/</span>maciejbledowski
-          </button>
+          </Link>
 
         <div className="hidden md:flex items-center gap-6">
           <ul className="flex items-center gap-8">
@@ -42,11 +38,33 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
+            <button
+              onClick={() => setTerminalOpen(true)}
+              className="p-2 rounded-lg border border-border text-text-secondary hover:text-accent hover:border-accent transition-colors duration-200"
+              title="Open terminal"
+              aria-label="Open terminal"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+            </button>
             <ThemeSwitcher />
           </div>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={() => setTerminalOpen(true)}
+            className="p-2 rounded-lg border border-border text-text-secondary hover:text-accent hover:border-accent transition-colors duration-200"
+            title="Open terminal"
+            aria-label="Open terminal"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="4 17 10 11 4 5" />
+              <line x1="12" y1="19" x2="20" y2="19" />
+            </svg>
+          </button>
           <ThemeSwitcher />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
