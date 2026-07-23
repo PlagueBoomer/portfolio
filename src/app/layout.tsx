@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { personalInfo } from "@/data/personal";
 
 export const metadata: Metadata = {
-  title: `${personalInfo.displayName} | ${personalInfo.role}`,
-  description: `${personalInfo.displayName} - ${personalInfo.role}. ${personalInfo.tagline}`,
+  title: "Maciej Błędowski | IT | Help Desk | System Administration",
+  description: "Maciej Błędowski - IT Support Specialist. Portfolio, projects, homelab, and career.",
   keywords: ["IT Support", "Linux", "Homelab", "Proxmox", "Networking", "Docker", "Portfolio"],
-  authors: [{ name: personalInfo.displayName }],
+  authors: [{ name: "Maciej Błędowski" }],
   openGraph: {
-    title: `${personalInfo.displayName} | ${personalInfo.role}`,
-    description: `${personalInfo.role}. ${personalInfo.tagline}`,
+    title: "Maciej Błędowski | IT Support",
+    description: "IT | Help Desk | System Administration",
     url: "https://maciejbledowski.pl",
-    siteName: personalInfo.displayName,
+    siteName: "Maciej Błędowski",
     type: "website",
   },
 };
@@ -25,11 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 pt-16">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <LanguageProvider>
+            <Navbar />
+            <main className="flex-1 pt-16">{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

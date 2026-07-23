@@ -1,14 +1,19 @@
+"use client";
+
 import { experiences } from "@/data/experience";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Timeline() {
+  const { t } = useLanguage();
+
   return (
     <section id="experience" className="border-t border-border">
       <div className="section-container">
         <h2 className="section-title">
           <span className="font-mono text-accent text-lg mr-2">02.</span>
-          Experience
+          {t("experience.title")}
         </h2>
-        <p className="section-subtitle">Where I&apos;ve worked.</p>
+        <p className="section-subtitle">{t("experience.subtitle")}</p>
 
         <div className="relative">
           <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-border" />

@@ -10,14 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0a",
-        surface: "#141414",
-        "surface-light": "#1e1e1e",
-        border: "#2a2a2a",
-        "text-primary": "#f5f5f5",
-        "text-secondary": "#a0a0a0",
-        accent: "#3b82f6",
-        "accent-hover": "#60a5fa",
+        background: "var(--bg)",
+        surface: "var(--surface)",
+        "surface-light": "var(--surface-light)",
+        border: "var(--border)",
+        "text-primary": "var(--text-primary)",
+        "text-secondary": "var(--text-secondary)",
+        accent: "#57ff00",
+        "accent-hover": "#6fff33",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

@@ -5,6 +5,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 @layer base {
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f5f5;
+    --surface-light: #ebebeb;
+    --border: #e0e0e0;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+  }
+
+  .dark {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface-light: #1e1e1e;
+    --border: #2a2a2a;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a0a0a0;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -14,7 +32,7 @@
   }
 
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-accent/30;
   }
 
   ::-webkit-scrollbar {
@@ -44,23 +62,23 @@
   }
 
   .glass-card {
-    @apply bg-surface border border-border rounded-xl p-6 
+    @apply bg-surface border border-border rounded-xl p-6
            hover:border-accent/30 transition-all duration-300;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-white 
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-black
            rounded-lg font-medium hover:bg-accent-hover transition-colors duration-200;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-border 
-           text-text-primary rounded-lg font-medium hover:border-accent 
+    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-border
+           text-text-primary rounded-lg font-medium hover:border-accent
            hover:text-accent transition-colors duration-200;
   }
 
   .tag {
-    @apply inline-block px-3 py-1 text-xs font-medium rounded-full 
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full
            bg-surface-light text-text-secondary border border-border;
   }
 
@@ -82,10 +100,6 @@
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-accent to-blue-300 bg-clip-text text-transparent;
-  }
-
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }

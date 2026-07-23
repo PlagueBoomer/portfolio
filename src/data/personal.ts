@@ -5,11 +5,6 @@ export const personalInfo = {
   tagline: "Windows \u2022 macOS \u2022 Linux \u2022 MDM \u2022 Identity Management \u2022 Homelab",
   location: "Warsaw, Poland",
   email: "bledowskimaciej@gmail.com",
-  about: [
-    "IT Support Specialist with over 3 years of experience in end-user device management (Windows, macOS, Linux) and identity administration across cloud and hybrid environments. Working daily with MDM solutions (Intune, Jamf Pro) and managing accounts and access in Active Directory and Okta.",
-    "Experienced in both large-scale hardware deployments and independently delivering end-to-end IT support for entire office environments. Previously the sole IT engineer responsible for a 200-person office at Xperi Inc.",
-    "Outside of work, I run a homelab built on Proxmox, self-host everything I can, and build tools that solve real problems. Currently expanding my skills in system administration and networking through advanced hands-on projects. Passionate about open-source technologies.",
-  ],
   skills: [
     "Windows / macOS / Linux",
     "Intune & Jamf Pro (MDM)",
@@ -23,15 +18,6 @@ export const personalInfo = {
     "AWS (basic administration)",
     "Git & Version Control",
     "VIP Support",
-  ],
-  tools: [
-    "Microsoft Windows",
-    "Microsoft Office",
-    "Active Directory",
-    "Linux",
-    "Apple ecosystem",
-    "ServiceDesk Plus",
-    "ServiceNow",
   ],
   languages: [
     { name: "Polish", level: "Native" },
@@ -47,13 +33,15 @@ export const personalInfo = {
     github: "https://github.com/PlagueBoomer",
     linkedin: "https://linkedin.com/in/maciejbledowski",
     cv: "/cv",
+    contact: "/contact",
     email: "mailto:bledowskimaciej@gmail.com",
   },
 };
 
 export const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "Homelab", href: "/homelab" },
-  { label: "CV", href: "/cv" },
+  { labelKey: "nav.home", href: "/" },
+  { labelKey: "nav.projects", href: "/projects" },
+  { labelKey: "nav.homelab", href: "/homelab" },
+  { labelKey: "nav.cv", href: "/cv" },
+  { labelKey: "nav.contact", href: "/contact" },
 ];

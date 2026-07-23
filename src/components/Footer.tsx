@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { personalInfo } from "@/data/personal";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="border-t border-border bg-surface/50">
@@ -13,7 +17,7 @@ export default function Footer() {
               <span className="font-mono text-accent">~/</span>maciejbledowski
             </Link>
             <p className="text-text-secondary text-sm">
-              {personalInfo.role} &bull; {personalInfo.tagline}
+              {personalInfo.role}
             </p>
           </div>
 
@@ -39,7 +43,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t border-border text-center">
           <p className="text-text-secondary text-sm">
-            &copy; {currentYear} {personalInfo.displayName}. Built with Next.js &amp; Tailwind CSS.
+            &copy; {currentYear} {personalInfo.displayName}. {t("footer.built")}
           </p>
         </div>
       </div>
